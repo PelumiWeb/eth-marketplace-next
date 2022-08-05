@@ -1,4 +1,4 @@
-import { Footer, Navbar } from '@components/common'
+import { Footer, Navbar } from '@components/ui/common'
 import React from 'react'
 
 function BaseLayout(props) {
