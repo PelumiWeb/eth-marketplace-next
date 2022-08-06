@@ -1,6 +1,7 @@
 import React, {createContext, useContext} from "react"
 import detectEthereumProvider from '@metamask/detect-provider'
 import Web3 from "web3"
+import { setupHook } from "./hooks/setupHook"
 
 const web3Context  = createContext(null)
 
@@ -60,6 +61,7 @@ export default function Web3provider(props) {
     const _web3API = React.useMemo(() => {
         return {
             ...web3API,
+            hooks: setupHook(web3API.web3),
             connect: () => web3API.provider ? connectMetaMask() : () => console.error('Cannot connect to MetaMask, try to reload your browser please.'),
             test: () => console.log("Trying to test"),
         }

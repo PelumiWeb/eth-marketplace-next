@@ -1,10 +1,11 @@
 import { useWeb3 } from "@components/provider"
+import { useAccount } from "@components/provider/web3/hooks/useAccount"
 import Link from "next/link"
-import { useRouter } from "next/router"
 import Button from "../button"
 export default function Navbar() {
-  const {connect, isLoading, provider} = useWeb3()
-  const router = useRouter()
+  const {connect, isLoading, provider, web3, hooks} = useWeb3()
+    const {accounts} = hooks.useAccount()
+  console.log(accounts)
     return (
         <section>
         <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
