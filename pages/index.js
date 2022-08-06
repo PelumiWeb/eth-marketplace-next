@@ -4,6 +4,7 @@ import { List} from "@components/ui/course"
 import { Card} from "@components/ui/order"
 import { BaseLayout } from "@components/ui/layout";
 import { getAllCourse } from "content/courses/fetcher";
+import { useWeb3 } from "@components/provider";
 
 
 
@@ -11,14 +12,25 @@ import { getAllCourse } from "content/courses/fetcher";
 
 export default function Home() {
   const {data} = getAllCourse()
+  // const {test} = useWeb3()
+ 
   return (
-    <BaseLayout>
+    <App>
+    {/* {test} */}
         <Hero />
            <Breadcrumb />
           <EthRates />
             <Walletbars />
             <List />
             <Card data={data}/>
-    </BaseLayout>
+    </App>
   )
 } 
+
+export function App (props) {
+    return(
+      <BaseLayout>
+          {props.children}
+      </BaseLayout>
+    )
+}

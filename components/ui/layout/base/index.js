@@ -1,9 +1,10 @@
+import { Web3provider } from '@components/provider'
 import { Footer, Navbar } from '@components/ui/common'
 import React from 'react'
 
 function BaseLayout(props) {
   return (
-    <div>
+    <Web3provider>
         <div className="relative max-w-7xl mx-auto px-4">
         <Navbar />
         <div className="fit">
@@ -11,7 +12,7 @@ function BaseLayout(props) {
         </div>
         </div>
         <Footer />
-    </div>
+    </Web3provider>
   )
 }
 
