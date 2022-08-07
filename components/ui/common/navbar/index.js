@@ -1,11 +1,11 @@
 import { useWeb3 } from "@components/provider"
-import { useAccount } from "@components/provider/web3/hooks/useAccount"
+import { useAccount } from "@components/web3/hooks/useAccounts"
 import Link from "next/link"
 import Button from "../button"
 export default function Navbar() {
   const {connect, isLoading, provider, web3, hooks} = useWeb3()
-    const {accounts} = hooks.useAccount()
-  console.log(accounts)
+    const data = useAccount()
+    const {accounts}  = data()
     return (
         <section>
         <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
@@ -43,6 +43,11 @@ export default function Navbar() {
                 <Button disabled className="text-white bg-indigo-600 hover:bg-indigo-500"> 
                   Connecting..
                   </Button> :
+                !isLoading && provider && accounts ? 
+                <Button className="text-white bg-indigo-600 hover:bg-indigo-500" onClick={connect}>
+                Hi there
+              </Button>
+              :
                 !isLoading && provider ? 
                 <Button className="text-white bg-indigo-600 hover:bg-indigo-500" onClick={connect}>
                   Connect
@@ -56,6 +61,8 @@ export default function Navbar() {
             </div>
           </nav>
         </div>
+        <p>{accounts}</p>
+
       </section>
     )
 } 

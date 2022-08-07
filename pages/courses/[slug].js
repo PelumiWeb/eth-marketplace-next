@@ -13,7 +13,6 @@ export default function Course(props) {
       "Safe operator",
     ]
 
-    console.log(props)
  
     return (
       <BaseLayout>

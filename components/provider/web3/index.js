@@ -35,9 +35,9 @@ export default function Web3provider(props) {
                 // Access the decentralized web!
               
                 // Legacy providers may only have ethereum.sendAsync
-                const chainId = await provider.request({
-                  method: 'eth_chainId'
-                })
+                // const chainId = await provider.request({
+                //   method: 'eth_chainId'
+                // })
               } else {
               setWeb3API((api) => ({
                 ...api,
@@ -62,8 +62,8 @@ export default function Web3provider(props) {
         return {
             ...web3API,
             hooks: setupHook(web3API.web3),
+            getHooks: () => setupHook(web3API.web3),
             connect: () => web3API.provider ? connectMetaMask() : () => console.error('Cannot connect to MetaMask, try to reload your browser please.'),
-            test: () => console.log("Trying to test"),
         }
     }, [web3API])
 
@@ -77,4 +77,9 @@ export default function Web3provider(props) {
 
 export function useWeb3() {
     return useContext(web3Context)
+}
+
+export function useHooks(cb) {
+    const {getHooks} = useWeb3()
+    return cb(getHooks())
 }

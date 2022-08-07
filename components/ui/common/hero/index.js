@@ -2,10 +2,9 @@ import { useWeb3 } from "@components/provider"
 
 export default function Hero() {
   const {web3, povider, isLoading} = useWeb3()
-  console.log(web3, isLoading, povider)
     return (
       <>
-      {isLoading ? "is loading web3" : web3 ? "Web3 is ready" : "Please install metamask"}
+      {/* {isLoading ? "is loading web3" : web3 ? "Web3 is ready" : "Please install metamask"} */}
         <section className="lg:2/6 text-left my-28">
         <div className="text-6xl font-semibold text-gray-900 leading-none">Grow your career as a developer</div>
         <div className="mt-6 text-xl font-light text-true-gray-500 antialiased">Learn programming and web development the easy way! Get unlimited access to all of our courses.</div>

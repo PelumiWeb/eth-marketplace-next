@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Card(props) {
-  console.log(props.data)
   return (
   <section className="grid md:grid-cols-1 place-items-center lg:grid-cols-2 gap-4 mb-5">
   { props.data.map((data) =>
