@@ -3,7 +3,7 @@ import { useAccount } from "@components/web3/hooks/useAccounts"
 import Link from "next/link"
 import Button from "../button"
 export default function Navbar() {
-  const {connect, isLoading, provider, web3, hooks} = useWeb3()
+  const {connect, isLoading, provider,} = useWeb3()
     const data = useAccount()
     const {accounts}  = data()
     return (
@@ -39,13 +39,12 @@ export default function Navbar() {
                   loading..
                   </Button>} */}
                 {isLoading ?
-
                 <Button disabled className="text-white bg-indigo-600 hover:bg-indigo-500"> 
                   Connecting..
                   </Button> :
                 !isLoading && provider && accounts ? 
                 <Button className="text-white bg-indigo-600 hover:bg-indigo-500" onClick={connect}>
-                Hi there
+                Hi there {accounts.isAdmin ? "Admin" : null}
               </Button>
               :
                 !isLoading && provider ? 
@@ -61,7 +60,7 @@ export default function Navbar() {
             </div>
           </nav>
         </div>
-        <p>{accounts}</p>
+       {accounts?.data &&  <p className="flex justify-end sm:px-6 lg:px-8 bg-indigo-600 text-white p-2" style={{width: 450}}>{accounts?.data}</p>}
 
       </section>
     )
