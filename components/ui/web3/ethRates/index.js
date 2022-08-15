@@ -4,8 +4,10 @@ export default function EthRates() {
 
   const {accounts} = useAccount()
   const {network} = useNetwork()
+  console.log(network)
     return (
         <section className="text-white bg-indigo-600">
+
         <div className="p-8">
           <h1 className="text-2xl">Hello, {accounts?.data}</h1>
           <h2 className="subtitle mb-5 text-xl">I hope you are having a great day!</h2>
@@ -18,6 +20,15 @@ export default function EthRates() {
               </div>
             </div>
             <div>
+              {network?.isLoading && !network.isSupported && <div className="bg-red-400 p-4 rounded-lg">
+                Connected to the wrong Network 
+                <div> 
+                Connect to: {` `}
+                <strong>
+                {network.target}
+                </strong>
+              </div>
+              </div>}
               <div><span>Currently on </span><strong className="text-2xl">{network.data}</strong></div>
             </div>
           </div>

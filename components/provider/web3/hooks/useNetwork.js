@@ -11,10 +11,12 @@ const NETWORK = {
     1337: "Ganache",
 }
 
+const targetNetwork = NETWORK[1337]
+console.log(targetNetwork)
 
 export const Handler  = (web3) => () => {
 
-    const {mutate, ...rest}  = useSWR(() => 
+    const {mutate,error, data, ...rest}  = useSWR(() => 
     web3 ? "web3/network" : null,
     async () => {
         const netId = await web3.eth.getChainId()
@@ -31,6 +33,10 @@ export const Handler  = (web3) => () => {
 return {
     network: {
         mutate, 
+        isLoading: !data && !error ,
+        target: targetNetwork,
+        data,
+        isSupported: data === targetNetwork,
         ...rest
     }
 }

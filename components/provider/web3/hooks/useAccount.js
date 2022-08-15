@@ -7,8 +7,6 @@ const adminAdress = {
 }
 
 export const Handler  = web3 => () => {
-    const [accounts, setAccounts] = React.useState("")
-
     const {mutate,data, ...swrRes} = useSWR(() => {
       return web3 ? "web3/accounts" : null},
        async () => {
